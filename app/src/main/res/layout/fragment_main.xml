@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_back"
+    tools:context=".ui.fragments.MainFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/location_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/numans"
+            android:gravity="center"
+            android:text="Locality"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:id="@+id/top_temp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/app_mid_layout_back">
+
+
+            <TextView
+                android:id="@+id/temp_reading"
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/numans"
+                android:gravity="center"
+                android:text="0\u2103"
+                android:textColor="@color/white"
+                android:textSize="69sp" />
+
+            <TextView
+                android:id="@+id/feel"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/temp_reading"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/numans"
+                android:gravity="center"
+                android:text="Feels Like"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/temp_icon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/temp_icon_back"
+                    android:src="@drawable/thunder_cloud" />
+
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/numans"
+                    android:gravity="center"
+                    android:text="Description"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/mid_items"
+            android:layout_below="@+id/top_temp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/app_mid_layout_back">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginStart="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/wind_speed"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/numans"
+                    android:layout_alignParentStart="true"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="Wind"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/wind_reading"
+                    android:layout_width="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="25dp"
+                    android:fontFamily="@font/numans"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="0 km/h"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/humidity"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/numans"
+                    android:gravity="center"
+                    android:text="Humidity"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/humid_reading"
+                    android:layout_width="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="25dp"
+                    android:fontFamily="@font/numans"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="0 %"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/Visibility"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/numans"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="Visibility"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/visible_reading"
+                    android:layout_width="120dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="25dp"
+                    android:fontFamily="@font/numans"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="33m/h"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+       <RelativeLayout
+           android:layout_marginTop="20dp"
+           android:layout_marginStart="15dp"
+           android:layout_marginEnd="15dp"
+           android:layout_marginBottom="15dp"
+           android:background="@drawable/app_mid_layout_back"
+           android:layout_below="@id/mid_items"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <Button
+               android:id="@+id/my_location_button"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="5dp"
+               android:backgroundTint="@color/transparent"
+               android:fontFamily="@font/numans"
+               android:text="My Location" />
+
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:layout_below="@id/my_location_button"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_marginStart="8dp"
+               android:layout_marginTop="5dp"
+               android:layout_marginEnd="8dp"
+               android:layout_marginBottom="8dp" />
+
+       </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/search_button_main_fragment"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_baseline_search_24"
+            android:background="@drawable/app_mid_layout_back"
+            />
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>

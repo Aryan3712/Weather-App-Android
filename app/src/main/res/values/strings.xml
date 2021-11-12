@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">WeatherMap</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Maps_API">AIzaSyDgsRcO3fUHPdIG-o5J7Y_d60ykKdUk5fQ</string>
+    <string-array name="weather_items">
+
+        <item>Delhi</item>
+        <item>Mumbai</item>
+        <item>Chennai</item>
+        <item>Kolkata</item>
+        <item>Ranchi</item>
+        <item>Panaji</item>
+        <item>Dispur</item>
+
+    </string-array>
+</resources>

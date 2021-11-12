@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_back"
+    tools:context=".ui.fragments.MapFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <EditText
+            android:id="@+id/search_city_field"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="75dp"
+            android:background="@drawable/app_mid_layout_back"
+            android:fontFamily="@font/numans"
+            android:hint="Search city"
+            android:paddingLeft="20dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <ImageButton
+            android:id="@+id/check_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/app_mid_layout_back"
+            android:src="@drawable/ic_baseline_check_24" />
+
+        <Button
+            android:id="@+id/my_location_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/transparent"
+            android:fontFamily="@font/numans"
+            android:text="My Location" />
+
+
+
+
+
+    </RelativeLayout>
+
+    <fragment
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+        tools:context=".MapsActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+    <ImageButton
+        android:id="@+id/info_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/app_mid_layout_back"
+        android:src="@drawable/ic_baseline_info_24"
+        android:layout_marginTop="110dp"
+        android:layout_marginStart="15dp"/>
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/app_mid_layout_back"
+        android:src="@drawable/ic_baseline_settings_backup_restore_24"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="155dp"
+        />
+
+</FrameLayout>
