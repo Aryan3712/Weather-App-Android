@@ -48,12 +48,6 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
     private var location_sub_locality : String = ""
     private var location_country : String = ""
 
-    private var tempe : Double = 0.0
-    private var humid : Double = 0.0
-    private var wSpeed : Double = 0.0
-    private var visible : Int = 0
-    private var feelsLike : String = ""
-    private var description : String = ""
 
     private lateinit var my_location_button : Button
     private lateinit var get_weather : ImageButton
@@ -61,7 +55,7 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
     private lateinit var get_back : ImageButton
     private lateinit var get_city : EditText
     private lateinit var mMarker: Marker
-    private lateinit var windObject : JSONObject
+
 
 
     override fun onCreateView(
@@ -88,9 +82,8 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
 
         get_weather.setOnClickListener { vi:View ->
             val city = get_city.text.toString().trim()
-            Toast.makeText(context,city,Toast.LENGTH_LONG).show()
             if(city.isNotEmpty()){
-                centerMapAndFindWeather(city)
+                getDataFromApi(city)
             }else{
                 Toast.makeText(context,"Enter city name",Toast.LENGTH_SHORT).show()
             }
@@ -109,40 +102,33 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
         }
 
         get_back.setOnClickListener { vi: View ->
-            var bundle = bundleOf()
             Navigation.findNavController(vi).navigate(R.id.action_mapFragment_to_mainFragment)
         }
-
+        centerOnMyLocation()
         return view
     }
 
-    private fun centerMapAndFindWeather(city: String) {
-        geoLocateUsingCityName(city)
-    }
-
-    private fun geoLocateUsingCityName(city: String) {
-        val geoCoder = Geocoder(activity)
-        val address : List<Address>
-        try{
-            address = geoCoder.getFromLocationName(city,1)
-            if(address.isNotEmpty()){
-                location_locality = address[0].locality
-                location_sub_locality = address[0].subLocality
-                location_country = address[0].countryName
-                moveCameraForCityName(LatLng(address[0].latitude,address[0].longitude))
-            }
-        }catch (e: IOException){
-            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show()
-        }
-    }
+//    private fun geoLocateUsingCityName(city: String) {
+//        val geoCoder = Geocoder(activity)
+//        val address : List<Address>
+//        try{
+//            address = geoCoder.getFromLocationName(city,1)
+//            if(address.isNotEmpty()){
+//                geoLocate(address[0].latitude,address[0].longitude)
+//                moveCameraForCityName(LatLng(address[0].latitude,address[0].longitude))
+//            }
+//        }catch (e: IOException){
+//           Toast.makeText(context,"Map Error",Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
     private fun centerMapAndSendMyLocation() {
         try {
             val mlocation = mFusedLocationProviderClient.lastLocation.addOnCompleteListener{ task->
                 if(task.isSuccessful){
                     val result = task.result
-                    moveCamera(LatLng(result.latitude,result.longitude))
                     geoLocate(result.latitude,result.longitude)
+                    moveCamera(LatLng(result.latitude,result.longitude))
                 }else{
                     Toast.makeText(requireContext(),"Could not connect you", Toast.LENGTH_LONG).show()
                 }
@@ -182,6 +168,9 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
         val address : List<Address>
         try{
             address = geoCoder.getFromLocation(lat,long,1)
+            location_locality=""
+            location_sub_locality=""
+            location_country=""
             if(address.isNotEmpty()){
                 location_locality = address[0].locality.toString()
                 location_sub_locality = address[0].subLocality.toString()
@@ -199,13 +188,15 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
         val markerOptions = MarkerOptions()
             .position(latLng)
             .draggable(true)
-            .title("\t\t\t"+location_sub_locality+" "+location_locality+" "+location_country+"\t\t\t"+"\n\t\t\t\t"+
-                    "Temperature = $tempe \u2103"+"\n\t\t\t\t"+"Humidity = $humid %"+"\n\t\t\t\t"+"Wind Speed = $wSpeed km/h"+"\n\t\t\t\t"+"Visibility = $visible"+"\n\t\t\t\t"+"Feels like = $feelsLike"+"\n\t\t\t\t"+"Description = $description")
+//            .title("\t\t\t"+location_sub_locality+" "+location_locality+" "+location_country+"\t\t\t"+"\n\t\t\t\t"+
+//                    "Temperature = $tempe \u2103"+"\n\t\t\t\t"+"Humidity = $humid %"+"\n\t\t\t\t"+"Wind Speed = $wSpeed km/h"+"\n\t\t\t\t"+"Visibility = $visible"+"\n\t\t\t\t"+"Feels like = $feelsLike"+"\n\t\t\t\t"+"Description = $description")
         mMarker = mMap.addMarker(markerOptions)
         if(location_locality!="") {
+            Toast.makeText(context,location_locality,Toast.LENGTH_SHORT).show()
             getDataFromApi(location_locality)
         }
         else if(location_sub_locality!="") {
+            Toast.makeText(context,location_sub_locality,Toast.LENGTH_SHORT).show()
             getDataFromApi(location_sub_locality)
         }
         else{
@@ -221,19 +212,9 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
         val markerOptions = MarkerOptions()
             .position(latLng)
             .draggable(true)
-            .title("\t\t\t"+location_sub_locality+" "+location_locality+" "+location_country+"\t\t\t"+"\n\t\t\t\t"+
-                    "Temperature = $tempe \u2103"+"\n\t\t\t\t"+"Humidity = $humid %"+"\n\t\t\t\t"+"Wind Speed = $wSpeed km/h"+"\n\t\t\t\t"+"Visibility = $visible"+"\n\t\t\t\t"+"Feels like = $feelsLike"+"\n\t\t\t\t"+"Description = $description")
-
+//            .title("\t\t\t"+location_sub_locality+" "+location_locality+" "+location_country+"\t\t\t"+"\n\t\t\t\t"+
+//                    "Temperature = $tempe \u2103"+"\n\t\t\t\t"+"Humidity = $humid %"+"\n\t\t\t\t"+"Wind Speed = $wSpeed km/h"+"\n\t\t\t\t"+"Visibility = $visible"+"\n\t\t\t\t"+"Feels like = $feelsLike"+"\n\t\t\t\t"+"Description = $description")
         mMarker = mMap.addMarker(markerOptions)
-        if(location_locality!="") {
-            getDataFromApi(location_locality)
-        }
-        else if(location_sub_locality!="") {
-            getDataFromApi(location_sub_locality)
-        }
-        else{
-            Toast.makeText(context,"Could not find\nEnter City Name",Toast.LENGTH_SHORT).show()
-        }
         closeKeyBoard()
     }
 
@@ -259,7 +240,9 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
         }
         mMap.isMyLocationEnabled=true
         mMap.setOnMapLongClickListener(this)
-        centerOnMyLocation()
+        mMap.isTrafficEnabled=true
+        mMap.isBuildingsEnabled=true
+
     }
 
     override fun onMapLongClick(p0: LatLng) {
@@ -269,7 +252,7 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
             geoLocate(lat,long)
             moveCamera(LatLng(lat,long))
         }catch (e:IOException){
-            e.printStackTrace()
+            Toast.makeText(context,"Map Click Error",Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -279,20 +262,54 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
          val requestQueue = Volley.newRequestQueue(context)
          val stringRequest = StringRequest(
             Request.Method.POST, address, { response ->
-                //Log.d("response",response);
+                //Log.d("response",response)
                 try {
                     val jsonResponse = JSONObject(response)
                     val jsonArray = jsonResponse.getJSONArray("weather")
                     val jsonObjectWeather = jsonArray.getJSONObject(0)
-                    description = jsonObjectWeather.getString("description")
+                    val description = jsonObjectWeather.getString("description")
                     val des = description.split(" ").toTypedArray()
                     val jsonObjectMain = jsonResponse.getJSONObject("main")
-                    tempe = jsonObjectMain.getDouble("temp")
-                    humid = jsonObjectMain.getDouble("humidity")
-                    windObject = jsonResponse.getJSONObject("wind")
-                    wSpeed = windObject.getDouble("speed")
-                    visible = jsonResponse.getInt("visibility")
-                    feelsLike = jsonObjectMain.getString("feels_like")
+                    val latLongJSONObject = jsonResponse.getJSONObject("coord")
+
+
+                    val lat_h = latLongJSONObject.getDouble("lat")
+                    val long_h = latLongJSONObject.getDouble("lon")
+
+//                    var location_loc=""
+//                    var location_sub_loc=""
+//                    var location_coun=""
+//
+//                    val geoCoder = Geocoder(activity)
+//
+//                    val addresses = geoCoder.getFromLocation(lat_h,long_h,1)
+//                    location_locality=""
+//                    location_sub_locality=""
+//                    location_country=""
+//                    if(addresses.isNotEmpty()){
+//                        location_locality = addresses[0].locality.toString()
+//                        location_sub_locality = addresses[0].subLocality.toString()
+//                        location_country = addresses[0].countryName.toString()
+//                    }
+
+//                    geoLocate(lat_h,long_h)
+//                    moveCameraForCityName(LatLng(lat_h,long_h))
+
+
+                    val tempe = jsonObjectMain.getDouble("temp")
+                    val humid = jsonObjectMain.getDouble("humidity")
+                    val windObject = jsonResponse.getJSONObject("wind")
+                    val wSpeed = windObject.getDouble("speed")
+                    val visible = jsonResponse.getInt("visibility")
+                    val feelsLike = jsonObjectMain.getString("feels_like")
+
+                    val infoWindow = "\n\t\t\t\t\t\t"+location_sub_locality+" "+location_locality+" "+location_country+
+                            "\t\t\t\t\t\t"+"\n\t\t\t\t\t\t\t"+ "Temperature = $tempe \u2103"+"\n\t\t\t\t\t\t\t"+"Humidity = $humid %"+
+                            "\n\t\t\t\t\t\t\t"+"Wind Speed = $wSpeed km/h"+"\n\t\t\t\t\t\t\t"+"Visibility = $visible"+
+                            "\n\t\t\t\t\t\t\t"+"Feels like = $feelsLike"+"\n\t\t\t\t\t\t\t"+"Description = $description"
+                    moveCameraForCityName(LatLng(lat_h,long_h))
+                    mMarker.title = infoWindow
+
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
@@ -306,6 +323,7 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
             ).show()
         }
         requestQueue.add(stringRequest)
+
     }
 
 }

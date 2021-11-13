@@ -69,7 +69,7 @@ class MainFragment : Fragment(){
 
         search_btn = view.findViewById(R.id.search_button_main_fragment)
         location_name = view.findViewById(R.id.location_name)
-        my_location = view.findViewById(R.id.my_location_button)
+
 
         temp_reading = view.findViewById(R.id.temp_reading)
         wind_reading = view.findViewById(R.id.wind_reading)
@@ -82,11 +82,6 @@ class MainFragment : Fragment(){
 
         search_btn.setOnClickListener { vi:View ->
             Navigation.findNavController(vi).navigate(R.id.action_mainFragment_to_mapFragment)
-        }
-
-        my_location.setOnClickListener {
-            getDeviceLocation()
-            getDataFromApi(location_name.text.toString().trim())
         }
 
         return view

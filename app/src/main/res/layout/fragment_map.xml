@@ -12,7 +12,6 @@
         android:layout_height="wrap_content">
 
 
-
         <EditText
             android:id="@+id/search_city_field"
             android:layout_width="match_parent"
@@ -60,7 +59,7 @@
         android:layout_height="match_parent"
         android:id="@+id/map"
         tools:context=".MapsActivity"
-        android:name="com.google.android.gms.maps.SupportMapFragment" />
+        class="com.google.android.gms.maps.SupportMapFragment" />
 
     <ImageButton
         android:id="@+id/info_button"
