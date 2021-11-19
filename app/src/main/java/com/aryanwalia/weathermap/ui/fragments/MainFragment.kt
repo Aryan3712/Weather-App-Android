@@ -5,31 +5,22 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
-import android.media.Image
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.aryanwalia.weathermap.R
-import com.aryanwalia.weathermap.ui.CustomInfoWindowAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
@@ -49,7 +40,7 @@ class MainFragment : Fragment(){
     private lateinit var visibility_reading : TextView
     private lateinit var feels_what : TextView
     private lateinit var desc : TextView
-    private lateinit var my_location : Button
+    private lateinit var itemList : ListView
 
     private var tempe : Double = 0.0
     private var humid : Double = 0.0
@@ -77,6 +68,7 @@ class MainFragment : Fragment(){
         visibility_reading = view.findViewById(R.id.visible_reading)
         feels_what = view.findViewById(R.id.feel)
         desc = view.findViewById(R.id.desc)
+        itemList = view.findViewById(R.id.content_list)
 
         getDeviceLocation()
 
@@ -154,7 +146,7 @@ class MainFragment : Fragment(){
                     val hValue : String = humid.toString()+" "+"%"
                     humid_reading.setText(hValue)
 
-                    val wValue : String = wSpeed.toString()+" "+"km/h"
+                    val wValue : String = wSpeed.toString()+" "+"m/s"
                     wind_reading.setText(wValue)
 
                     val feel: String = "Feels Like $feelsLike"
@@ -164,6 +156,17 @@ class MainFragment : Fragment(){
 
                     visible = jsonResponse.getInt("visibility")
                     visibility_reading.setText(visible.toString())
+
+                    val sea_level = jsonObjectMain.getDouble("sea_level")
+
+                    val windObject = jsonResponse.getJSONObject("wind")
+
+
+                    val jsonCordObject = jsonResponse.getJSONObject("coord")
+                    val lon = jsonCordObject.getDouble("lon")
+                    val lat = jsonCordObject.getDouble("lat")
+
+                    populateList(description, tempe, humid, wSpeed,lat,lon,sea_level)
 
 
 
@@ -179,6 +182,21 @@ class MainFragment : Fragment(){
             ).show()
         }
         requestQueue.add(stringRequest)
+    }
+
+    private fun populateList(description: String, tempe: Double, humid: Double, wSpeed: Double,lat: Double,long: Double,seaLevel:Double) {
+        val cities = arrayOf(
+            "Description: $description",
+            "Temperature: $tempe℃",
+            "Humidity: $humid %",
+            "Wind Speed: " + wSpeed + "m/s",
+            "Latitude: " +lat ,
+            "Longitude: " + long ,
+            "Sea Level: " + seaLevel
+        )
+
+        val arrayAdapter = context?.let { ArrayAdapter(it, R.layout.row, cities) }
+        itemList.adapter = arrayAdapter
     }
 
 

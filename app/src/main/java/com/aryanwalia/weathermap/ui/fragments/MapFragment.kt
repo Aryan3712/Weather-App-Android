@@ -82,6 +82,9 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
 
         get_weather.setOnClickListener { vi:View ->
             val city = get_city.text.toString().trim()
+//            location_locality=""
+//            location_sub_locality=""
+//            location_country=""
             if(city.isNotEmpty()){
                 getDataFromApi(city)
             }else{
@@ -168,9 +171,6 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
         val address : List<Address>
         try{
             address = geoCoder.getFromLocation(lat,long,1)
-            location_locality=""
-            location_sub_locality=""
-            location_country=""
             if(address.isNotEmpty()){
                 location_locality = address[0].locality.toString()
                 location_sub_locality = address[0].subLocality.toString()
@@ -276,26 +276,6 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
                     val lat_h = latLongJSONObject.getDouble("lat")
                     val long_h = latLongJSONObject.getDouble("lon")
 
-//                    var location_loc=""
-//                    var location_sub_loc=""
-//                    var location_coun=""
-//
-//                    val geoCoder = Geocoder(activity)
-//
-//                    val addresses = geoCoder.getFromLocation(lat_h,long_h,1)
-//                    location_locality=""
-//                    location_sub_locality=""
-//                    location_country=""
-//                    if(addresses.isNotEmpty()){
-//                        location_locality = addresses[0].locality.toString()
-//                        location_sub_locality = addresses[0].subLocality.toString()
-//                        location_country = addresses[0].countryName.toString()
-//                    }
-
-//                    geoLocate(lat_h,long_h)
-//                    moveCameraForCityName(LatLng(lat_h,long_h))
-
-
                     val tempe = jsonObjectMain.getDouble("temp")
                     val humid = jsonObjectMain.getDouble("humidity")
                     val windObject = jsonResponse.getJSONObject("wind")
@@ -303,8 +283,7 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMapLongClickListen
                     val visible = jsonResponse.getInt("visibility")
                     val feelsLike = jsonObjectMain.getString("feels_like")
 
-                    val infoWindow = "\n\t\t\t\t\t\t"+location_sub_locality+" "+location_locality+" "+location_country+
-                            "\t\t\t\t\t\t"+"\n\t\t\t\t\t\t\t"+ "Temperature = $tempe \u2103"+"\n\t\t\t\t\t\t\t"+"Humidity = $humid %"+
+                    val infoWindow = "\n\t\t\t\t\t\t"+"\n\t\t\t\t\t\t\t"+ "Temperature = $tempe \u2103"+"\t\t\t\t\t\t"+"\n\t\t\t\t\t\t\t"+"Humidity = $humid %"+
                             "\n\t\t\t\t\t\t\t"+"Wind Speed = $wSpeed km/h"+"\n\t\t\t\t\t\t\t"+"Visibility = $visible"+
                             "\n\t\t\t\t\t\t\t"+"Feels like = $feelsLike"+"\n\t\t\t\t\t\t\t"+"Description = $description"
                     moveCameraForCityName(LatLng(lat_h,long_h))
