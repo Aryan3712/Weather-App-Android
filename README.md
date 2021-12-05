@@ -27,10 +27,11 @@ https://drive.google.com/file/d/1F6bRvJRRXKunP_2aQHXNGTMtWBPHRmiy/view?usp=shari
 ## Sample Images
 
 <p align="center">
-	<img src="https://i.ibb.co/5T6d9sf/1.png" alt="1" border="0">
-	<img src="https://i.ibb.co/njbmqxV/screenshot.png" alt="screenshot" border="0">
-	<img src="https://i.ibb.co/bKC1ZNg/Capture1321.png" alt="Capture1321" border="0">
-	<img src="https://i.ibb.co/k29n27X/Captgfdgure.png" alt="Captgfdgure" border="0">
-	<img src="https://i.ibb.co/M5xRjdK/Cavbcvpture.png" alt="Cavbcvpture" border="0"
+	<img src="https://i.ibb.co/RD0xwFP/Whats-App-Image-2021-12-05-at-9-14-42-PM-1.jpg" alt="Whats-App-Image-2021-12-05-at-9-14-42-PM-1" border="0">
+	<img src="https://i.ibb.co/k9TWmmB/Whats-App-Image-2021-12-05-at-9-14-42-PM-2.jpg" alt="Whats-App-Image-2021-12-05-at-9-14-42-PM-2" border="0">
+	<img src="https://i.ibb.co/FK6cLgw/Whats-App-Image-2021-12-05-at-9-14-42-PM-3.jpg" alt="Whats-App-Image-2021-12-05-at-9-14-42-PM-3" border="0">
+	<img src="https://i.ibb.co/L6ZrCt4/Whats-App-Image-2021-12-05-at-9-14-42-PM-4.jpg" alt="Whats-App-Image-2021-12-05-at-9-14-42-PM-4" border="0">
+	<img src="https://i.ibb.co/M1s9KNj/Whats-App-Image-2021-12-05-at-9-14-42-PM.jpg" alt="Whats-App-Image-2021-12-05-at-9-14-42-PM" border="0">
+	<img src="https://i.ibb.co/CKmZSk1/Whats-App-Image-2021-12-05-at-9-14-43-PM.jpg" alt="Whats-App-Image-2021-12-05-at-9-14-43-PM" border="0">
 	
 </p>
