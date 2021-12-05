@@ -22,7 +22,7 @@ Project is created with:
 	
 ## Setup
 To run this project, either clone this repository or download the project from this link:
-https://drive.google.com/drive/folders/1VgkMu_pjoFrsT7hDT2Fdy6fNdUKcFMDx?usp=sharing
+https://drive.google.com/file/d/1F6bRvJRRXKunP_2aQHXNGTMtWBPHRmiy/view?usp=sharing
 
 ## Sample Images
 
